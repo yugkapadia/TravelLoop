@@ -14,24 +14,9 @@ const hotelRoutes = require('./routes/hotels');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-const allowedOrigins = (process.env.CORS_ORIGIN || '')
-  .split(',')
-  .map((origin) => origin.trim())
-  .filter(Boolean);
 
-app.use(cors({
-  origin(origin, callback) {
-    if (
-      !origin ||
-      origin.includes("vercel.app")
-    ) {
-      callback(null, true);
-      return;
-    }
+app.use(cors());
 
-    callback(new Error("Not allowed by CORS"));
-  },
-}));
 app.use(express.json({ limit: '1mb' }));
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
