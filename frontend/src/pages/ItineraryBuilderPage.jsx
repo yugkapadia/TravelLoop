@@ -138,7 +138,9 @@ export default function ItineraryBuilderPage({ user }) {
     setSharing(true);
     try {
       const data = await createShare(Number(tripId), 'public');
-      const shareUrl = `${window.location.origin}/share/${data.share.public_code}`;
+      const BASE_SHARE_URL = "https://travel-loop-yug-kapadia-s-projects.vercel.app";
+
+const shareUrl = `${BASE_SHARE_URL}/share/${data.share.public_code}`;
       setShareInfo(shareUrl);
     } catch (err) {
       setError(err.message || 'Failed to create share link.');
